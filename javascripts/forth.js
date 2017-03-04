@@ -93,6 +93,18 @@ function Forth(next) {
       currentDefinition.actions.push(action);
     }
   }
+  
+  function playBell() {
+  var bellNoiseSrc = '',
+      body = document.findElementBySelectors(body')[0],
+	  audio = body.findElementByID('playbell')||null;
+	  if(audio==null) {
+	      body.innerHTML += "<audio id='playbell' src='" + bellNoiseSrc + "'>Your browser does not support the <code>audio</code> element.</audio>';
+	      audio = body.findElementByID('playbell')||false;
+	  }
+	  if (!audio) return console.error("unable to create audio");
+	  audio.play();
+  }
 
   function executeRuntimeAction(tokenizer, action, next) {
     switch (action.code) {
