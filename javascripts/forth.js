@@ -114,6 +114,11 @@ function Forth(next) {
     case "constant":
       createConstant(tokenizer.nextToken().value, context.stack.pop());
       break;
+	case "07":
+		playBell();
+		context.stack.pop();
+		action(context, next);
+		break;
     case ":":
       startDefinition(tokenizer.nextToken().value);
       break;
